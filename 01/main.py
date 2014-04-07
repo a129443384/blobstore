@@ -30,7 +30,7 @@ class Apply(webapp2.RequestHandler):
         if name=='' or account=='' or password=='':
             render(self, 'apply.html', {'error': '請填寫所有欄位'})
             return
-            # Check whether the user already exists
+            # Check whether the user already exists 
         if User.get_by_id(account):
             render(self, 'apply.html', {'error': '帳號已存在'})
             return
