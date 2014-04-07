@@ -1,0 +1,37 @@
+
+<style>
+table.members {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+th.members {
+  text-align: left;
+  border: 1px solid black;
+  background: gray;
+  color: white;
+  padding: 0.2em;
+}
+td.members {
+  text-align: left;
+  border: 1px solid black;
+  padding: 0.2em;
+}
+</style>
+
+<h1>會員</h1>
+<table class="members">
+<tr>
+  <th class="members">姓名</th>
+  <th class="members">帳號</th>
+  <th class="members">密碼</th>
+</tr>
+{% for member in members %}
+<tr>
+  <td class="members">{{member.name}}</td>
+  <td class="members">{{member.account}}</td>
+  <td class="members">{{member.password}}</td>
+</tr>
+{% endfor %}
+</table>
+
+

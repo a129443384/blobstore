@@ -1,0 +1,48 @@
+<style>
+table.video {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+th.video {
+  text-align: left;
+  border: 1px solid black;
+  background: gray;
+  color: white;
+  padding: 0.2em;
+}
+td.video {
+  text-align: left;
+  border: 1px solid black;
+  padding: 0.2em;
+}
+</style>
+
+
+
+<h1>應用程式引擎：影音</h1>
+<p>串流影音：</p>
+
+<h1>影片</h1>
+<table class="video">
+<tr>
+  <th class="video">標題</th>
+  <th class="video">index</th>
+</tr>
+
+{% for video in videos %}
+<tr>
+  <td class="video">{{video.title}}</td>
+  <td class="video">{{video.index}}</td>
+  <td class="video">
+  <video id="movie" preload controls loop poster="/static/images/background.jpg" width="640" height="360">
+    <source src="/serve/{{video.index}}" type="video/mp4" />
+  </video>
+  </td>
+</tr>
+{% endfor %}
+</table>
+
+
+
+    
+

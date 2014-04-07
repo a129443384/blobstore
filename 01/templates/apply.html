@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}登入{% endblock %}
+
+{% block content %}
+<h2>申請新帳號</h2>
+<p>請輸入您的資訊:</p>
+<p>
+<form method="post" action="/apply">
+<p>姓名:<input type="text" name="name" /></p>
+<p>帳號:<input type="text" name="account" /></p>
+<p>密碼:<input type="password" name="password" /></p>
+<p>出生年月日: <input class="pickDate" type="text" name="birthDate" /></p>
+<input type="submit" value="送出" />
+<input type="button" value="放棄" onClick="window.location='/'; return false;" />
+</form>
+</p>
+
+{% if error %}
+<p>{{error}}</p>
+{% endif %}
+
+<script>
+{% include "datePicker.js" %}
+</script>
+
+{% endblock %}
+

@@ -1,0 +1,43 @@
+
+<h1>應用程式引擎 -- 聊天</h2>
+
+<p>
+<form id="chat" method="post" action="/chat">
+  <input type="text" name="text" size="60" />
+  <input type="submit" value="送出" />
+</form>
+</p>
+
+{% if error %}
+  <p>{{error}}</p>
+{% endif %}
+
+<p>聊天訊息：</p>
+<div id="chatContent"></div>
+
+
+<script>
+$(document).ready(function() {
+  $('#chat').ajaxForm({
+    success: function(returnData) {
+      $('#content').html(returnData);
+    }
+  });
+});
+
+
+function updateMsg() { 
+  $.ajax({ 
+    url: "/messages", 
+    cache: false, 
+    success: function(returnData){ 
+      $("#chatContent").html(returnData); 
+    } 
+  });
+  setTimeout('updateMsg()', 4000); 
+} 
+updateMsg();
+
+</script>
+
+
