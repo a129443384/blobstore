@@ -1,0 +1,42 @@
+<p><b>上載廣告影像:公司名稱、公司網址、廣告影像</b></p>
+
+{% for company in companies %}
+<p>
+<form class="uploadFiles" method="post" action="/uploadFiles?arg1=image" enctype="multipart/form-data">
+  <b>影像{{forloop.counter0}}:</b>
+  <input type="text" size="20" name="name" value="{% if company.uploaded %}  {{company.name}} {% endif %}" required="required" />
+  <input type="text" size="30" name="url" value="{% if company.uploaded %}{{company.url}}{% endif %}"
+  required="required" />
+  <input type="hidden" name="companyId" value="{{company.key.id}}" />
+  <input type="file" size="20" name="image" required="required" />
+  <input type="submit" value="送出" />
+</form>
+</p>
+{% endfor %}
+
+<br />
+<hr />
+<p>
+<form class="uploadFiles" method="post" action="/uploadFiles?arg1=file&arg2=serviceTerms"
+enctype="multipart/form-data">
+  <b>服務條款:</b><input type="file" size="20" name="file" required="required" />
+  <input type="submit" value="送出" />
+</form>
+</p><br />
+<p>
+<form class="uploadFiles" method="post" action="/uploadFiles?arg1=file&arg2=privacy"
+enctype="multipart/form-data">
+  <b>隱私權條款:</b><input type="file" size="20" name="file" required="required" />
+  <input type="submit" value="送出" />
+</form>
+</p>
+
+<script>
+$(document).ready(function() {
+  $('.uploadFiles').ajaxForm({
+    success: function(returnData) {
+      $('#content').html(returnData);
+  }
+  });
+});
+</script>

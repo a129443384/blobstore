@@ -1,0 +1,30 @@
+
+<h2>請登入</h2>
+<p>請輸入您的帳號與密碼來登入此網站:</p>
+<p>
+<form id="login" method="post" action="/login">
+  <p>帳號:<input type="text" name="account" /></p>
+  <p>密碼:<input type="password" name="password" /></p>
+  <p><input type="submit" value="送出" />
+  <input type="button" value="放棄" onClick="window.location='/'; return false;" />
+  <input type="button" value="新帳號" onClick="window.location='/apply'; return false;" /></p>
+</form>
+</p>
+
+{% if error %}
+<p>{{error}}</p>
+{% endif %}
+
+<script>
+$(document).ready(function() {
+  $('#login').ajaxForm({
+    success: function(returnData) {
+      if (returnData == "success") {
+        document.location.href = '/';
+      }else{
+        $('#content').html(returnData);
+      }
+    }
+  });
+});
+</script>
